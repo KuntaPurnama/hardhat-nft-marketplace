@@ -6,8 +6,8 @@ module.exports = async ({ deployments, getNamedAccounts }) => {
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
     const waitBlockConfirmations = developmentChains.includes(network.name)
-        ? 1
-        : VERIFICATION_BLOCK_CONFIRMATIONS
+        ? VERIFICATION_BLOCK_CONFIRMATIONS
+        : network.config.blockConfirmations
 
     log("--------------------------------------------------------")
 
@@ -22,6 +22,8 @@ module.exports = async ({ deployments, getNamedAccounts }) => {
         log("verifying.....")
         await verify(nftMarketPlace.address, [])
     }
+
+    console.log("network name", network.name)
 
     log("--------------------------------------------------------")
 }

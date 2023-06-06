@@ -3,8 +3,10 @@ const { moveBlocks } = require("../utils/move-blocks")
 
 const PRICE = ethers.utils.parseEther("0.1")
 async function mintAndList() {
+    console.log("network name", network.name)
     const nftMarketPlace = await ethers.getContract("NftMarketplace")
     const basicNft = await ethers.getContract("BasicNFT")
+    console.log("PRICE : ", PRICE.toString())
 
     console.log("Minting......")
     const mintResponse = await basicNft.mintNft()

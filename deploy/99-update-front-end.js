@@ -43,17 +43,26 @@ async function updateAbi() {
 
 async function updateContractAddress() {
     const nftMarketplace = await ethers.getContract("NftMarketplace")
+    const basicNFT = await ethers.getContract("BasicNFT")
     const chainId = network.config.chainId.toString()
     const contractAddress = nftMarketplace.address
     const currentAddresses = JSON.parse(fs.readFileSync(FRONT_END_ADDRESSES_FILE, "utf8"))
+    const contractAddressBasicNFT = basicNFT.address
     if (chainId in currentAddresses) {
         if (!currentAddresses[chainId]["NftMarketplace"].includes(contractAddress)) {
             currentAddresses[chainId]["NftMarketplace"].push(contractAddress)
         }
-    } else {
-        currentAddresses[chainId] = { NftMarketplace: contractAddress }
-    }
 
+        if (!currentAddresses[chainId]["BasicNFT"].includes(contractAddressBasicNFT)) {
+            currentAddresses[chainId]["BasicNFT"].push(contractAddressBasicNFT)
+        }
+    } else {
+        currentAddresses[chainId] = {
+            BasicNFT: contractAddressBasicNFT,
+            NftMarketplace: contractAddress,
+        }
+    }
+    console.log("json ", currentAddresses)
     fs.writeFileSync(FRONT_END_ADDRESSES_FILE, JSON.stringify(currentAddresses))
 }
 module.exports.tags = ["all", "frontend"]

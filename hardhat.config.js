@@ -17,7 +17,7 @@ const REPORT_GAS = process.env.REPORT_GAS || false
 
 module.exports = {
     defaultNetwork: "hardhat",
-    allowUnlimitedContractSize: true,
+    // allowUnlimitedContractSize: true,
     networks: {
         hardhat: {
             // // If you want to do some forking, uncomment this
@@ -25,11 +25,11 @@ module.exports = {
             //   url: MAINNET_RPC_URL
             // }
             chainId: 31337,
-            allowUnlimitedContractSize: true,
+            // allowUnlimitedContractSize: true,
         },
         localhost: {
             chainId: 31337,
-            allowUnlimitedContractSize: true,
+            // allowUnlimitedContractSize: true,
         },
         sepolia: {
             url: SEPOLIA_RPC_URL,
@@ -39,6 +39,7 @@ module.exports = {
             //   },
             saveDeployments: true,
             chainId: 11155111,
+            blockConfirmations: 6,
         },
         goerli: {
             url: GOERLI_RPC_URL,

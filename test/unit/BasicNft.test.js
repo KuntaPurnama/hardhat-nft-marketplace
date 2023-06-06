@@ -16,6 +16,7 @@ const { assert, expect } = require("chai")
               it("test constructor", async () => {
                   const tokenCounter = await basicNFT.getTokenCounter()
                   const tokenURI = await basicNFT.tokenURI(0)
+                  console.log("tokenURI ni", tokenURI)
                   const name = await basicNFT.name()
                   const symbol = await basicNFT.symbol()
                   assert.equal(tokenCounter.toString(), "0")

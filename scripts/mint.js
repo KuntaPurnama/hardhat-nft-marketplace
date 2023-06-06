@@ -3,8 +3,8 @@ const { moveBlocks } = require("../utils/move-blocks")
 
 const PRICE = ethers.utils.parseEther("0.1")
 
-async function mint() {
-    const basicNft = await ethers.getContract("BasicNftTwo")
+async function mintAndList() {
+    const basicNft = await ethers.getContract("BasicNFT")
     console.log("Minting NFT...")
     const mintTx = await basicNft.mintNft()
     const mintTxReceipt = await mintTx.wait(1)
@@ -19,7 +19,7 @@ async function mint() {
     }
 }
 
-mint()
+mintAndList()
     .then(() => process.exit(0))
     .catch((error) => {
         console.error(error)
